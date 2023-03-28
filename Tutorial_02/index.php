@@ -6,8 +6,7 @@
  * @param integer $row number of rows for diamond pattern
  * @return void
  */
-function makeDiamondShape($row)
-{
+function makeDiamondShape($row) {
     if (!($row > 0)) {
         echo '$row parameter must be greater than 0.';
     } elseif (!is_int($row)) {
