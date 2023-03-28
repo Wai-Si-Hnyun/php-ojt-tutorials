@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Function generate diamond shape
+ *
+ * @param integer $row number of rows for diamond pattern
+ * @return void
+ */
 function makeDiamondShape($row)
 {
     if (!($row > 0)) {
