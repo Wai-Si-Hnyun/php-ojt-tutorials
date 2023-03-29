@@ -12,7 +12,7 @@ function createPhoneNumber($numberArray) {
     foreach ($numberArray as $item) {
         //Check to sure all integer in array
         if (!is_int($item)) {
-            return "Input array contains non-integer value(s)";
+            return "Error: Input array contains non-integer value(s)";
         }
 
         //Split many digits to single digit
