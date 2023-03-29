@@ -1,32 +1,33 @@
 <?php
-  $result = "";
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$result = "";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST['dateOfBirth'])) {
-      $birthDate = $_POST['dateOfBirth'];
-      $age = calculateAge($birthDate);
 
-      if ($age == "invalid") {
-        $result = "Your date of birth is invalid";
-      } else {
-        $result = "Your age is {$age[0]} years, {$age[1]} months and {$age[2]} days";
-      }
+        $birthDate = $_POST['dateOfBirth'];
+        $age = calculateAge($birthDate);
+
+        if ($age == "invalid") {
+            $result = "Your date of birth is invalid";
+        } else {
+            $result = "Your age is {$age[0]} years, {$age[1]} months and {$age[2]} days";
+        }
     } else {
-      $result = "You need to fill your date of birth";
+        $result = "You need to fill your date of birth";
     }
-  }
+}
 
-  /**
-   * function to calculate age of user
-   *
-   * @param string $dateOfBirth date of birth from user input
-   * @return mixed Either a string or an array depending on the condition
-   */
-  function calculateAge($dateOfBirth) {
+/**
+ * function to calculate age of user
+ *
+ * @param string $dateOfBirth date of birth from user input
+ * @return mixed Either a string or an array depending on the condition
+ */
+function calculateAge($dateOfBirth) {
     $dateOfBirth = new DateTime($dateOfBirth); //user input date
     $today = new DateTime(); //current date
 
-    if ($dateOfBirth > $today) { 
-      return "invalid";
+    if ($dateOfBirth > $today) {
+        return "invalid";
     }
 
     $ageYears = $today->format('Y') - $dateOfBirth->format('Y');
@@ -35,20 +36,20 @@
 
     //If day of birth is not over yet
     if ($ageDays < 0) {
-      $lastMonth = $today->sub(new DateInterval('P1M'));
-      $daysInLastMonth = $lastMonth->format('t');
-      $ageDays += $daysInLastMonth;
-      $ageMonths--;
-    } 
+        $lastMonth = $today->sub(new DateInterval('P1M'));
+        $daysInLastMonth = $lastMonth->format('t');
+        $ageDays += $daysInLastMonth;
+        $ageMonths--;
+    }
 
     //If month of birth is not over yet
     if ($ageMonths < 0) {
-      $ageMonths += 12;
-      $ageYears--;
+        $ageMonths += 12;
+        $ageYears--;
     }
 
     return [$ageYears, $ageMonths, $ageDays];
-  }
+}
 ?>
 
 <!DOCTYPE html>
