@@ -2,6 +2,7 @@
 
 /**
  * Function to draw chess borad
+ * 
  * @param integer $rows number of rows in chess borad
  * @param integer $cols number of columns in chess borad
  * @return void
