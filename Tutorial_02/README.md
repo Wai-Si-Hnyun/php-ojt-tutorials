@@ -14,4 +14,4 @@
 └── README.md
 ```
 
-![Tuto_02.png](demo/Tuto_02.png)
+![Tuto_02.png](demo/preview.png)
