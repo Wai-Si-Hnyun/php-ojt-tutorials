@@ -11,7 +11,7 @@ function makeDiamondShape($row) {
         echo '$row parameter must be greater than 0.';
     } elseif (!is_int($row)) {
         echo '$row parameter must be number.';
-    } elseif (!($row % 2)) {
+    } elseif ($row % 2 == 0) {
         echo '$row parameter must be odd number.';
     } else {
         //Calculate the number of spaces and stars for each row

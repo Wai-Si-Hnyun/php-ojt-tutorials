@@ -7,34 +7,23 @@
  * @return void
  */
 function drawChessBorad($rows, $cols) {
-    if (!is_int($rows) || !is_int($cols)) {
-        if (!is_int($rows) && !is_int($cols)) {
-            echo '$rows and $cols parameters must be number.';
-        } else if (!is_int($rows) && !($cols > 0)) {
-            echo '$rows parameter must be integer number. $cols parameter must be greater than 0.';
-        } else if (!($rows > 0) && !is_int($cols)) {
-            echo '$rows parameter must be greater than 0. $cols parameter must be integer number.';
-        } else if (!is_int($rows)) {
-            echo '$rows parameter must be number.';
-        } else if (!is_int($cols)) {
-            echo '$cols parameter must be number.';
-        }
-    } else if (!($rows > 0) || !($cols > 0)) {
-        if (!($rows > 0) && !($cols > 0)) {
-            echo '$rows and $cols parameters must be greater than 0.';
-        } else if (!($rows > 0)) {
-            echo '$rows parameter must be greater than 0.';
-        } else if (!($cols > 0)) {
-            echo '$cols parameter must be greater than 0.';
-        }
-    } else if ($rows > 40 || $cols > 40) {
-        if ($rows > 40 && $cols > 40) {
-            echo '$rows and $cols parameters must be less than 40.';
-        } else if ($rows > 40) {
-            echo '$rows parameter must be less than 40.';
-        } else if ($cols > 40) {
-            echo '$cols parameter must be less than 40.';
-        }
+
+    if (!is_int($rows) && !is_int($cols)) {
+        echo '$rows and $cols parameters must be number.';
+    } elseif (!($rows > 0) && !($cols > 0)) {
+        echo '$rows and $cols parameters must be greater than 0.';
+    } elseif (!is_int($rows) && !($cols > 0)) {
+        echo '$rows parameter must be integer number. $cols parameter must be greater than 0.';
+    } elseif (!($rows > 0) && !is_int($cols)) {
+        echo '$rows parameter must be greater than 0. $cols parameter must be integer number.';
+    } elseif (!is_int($rows)) {
+        echo '$rows parameter must be number.';
+    } elseif (!is_int($cols)) {
+        echo '$cols parameter must be number.';
+    } elseif (!($rows > 0)) {
+        echo '$rows parameter must be greater than 0.';
+    } elseif (!($cols > 0)) {
+        echo '$cols parameter must be greater than 0.';
     } else {
         for ($x = 1; $x <= $rows; $x++) {
             echo "<tr>";
