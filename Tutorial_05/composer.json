@@ -1,0 +1,6 @@
+{
+    "name": "package/tutorial_05",
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.28"
+    }
+}
