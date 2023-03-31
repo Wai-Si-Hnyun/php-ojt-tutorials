@@ -5,7 +5,6 @@
  *
  * @param array $arr1
  * @param array $arr2
- * @return array $result an array of different elements from two arrays
  */
 function arrayDiff($arr1, $arr2) {
     $result = [];
@@ -23,7 +22,7 @@ function arrayDiff($arr1, $arr2) {
         }
     }
 
-    return $result;
+    print_r($result);
 }
 
 arrayDiff([1, 2, 3], [1, 2]);

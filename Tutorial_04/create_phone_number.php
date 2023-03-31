@@ -4,7 +4,6 @@
  * function to create phone number from input array
  *
  * @param array $numberArray an array that contains integers
- * @return string formatted phone number string
  */
 function createPhoneNumber($numberArray) {
     $tempArr = [];
@@ -26,7 +25,7 @@ function createPhoneNumber($numberArray) {
     $firstPart = implode(array_slice($tempArr, 3, 3));
     $lastPart = implode(array_slice($tempArr, 6));
 
-    return "({$phoneCode}) {$firstPart}-{$lastPart}";
+    echo "({$phoneCode}) {$firstPart}-{$lastPart}";
 }
 
 createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 9]);
