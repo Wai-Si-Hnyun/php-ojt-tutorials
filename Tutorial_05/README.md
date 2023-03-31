@@ -35,7 +35,11 @@ To install PHPWord and PHPSpreadsheet libraries, run the following command in yo
   composer require phpoffice/phpword phpoffice/phpspreadsheet
 ```
 
-This will download and install the required dependencies for PHPWord and PHPSpreadsheet and add them to your project's vendor/ directory.
+You can now start using phpword and phpspreadsheet in your PHP project by including the autoloader in your PHP file:
+
+```php
+  require 'vendor/autoload.php';
+```
 
 ## Sample Web Page
 
