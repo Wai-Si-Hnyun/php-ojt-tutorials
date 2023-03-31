@@ -8,6 +8,7 @@ class ComposerStaticInitb0410cd6e501d93da91b8f260e165563
 {
     public static $files = array (
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        '2950569a64ec6db81a16109849c72cb5' => __DIR__ . '/../..' . '/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (

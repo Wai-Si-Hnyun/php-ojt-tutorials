@@ -62,8 +62,10 @@ function handleCsvFile() {
             }
 
             foreach ($data as $item) {
+                //Split the string by all whitespace
                 $cells = preg_split('/\s+/', $item);
 
+                //Check the index of name is splited or not
                 if (count($cells) > 6) {
                     $newVal = implode(' ', array($cells[1], $cells[2]));
                     array_splice($cells, 2, 1);
