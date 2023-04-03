@@ -24,4 +24,4 @@ README.md
 - required
 - QR name field is required
 
-![Tuto_07.png](demo/sample.png)
+![sample.png](demo/sample.png)
