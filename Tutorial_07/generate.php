@@ -13,7 +13,7 @@
                 exit();
             }
 
-            $qr_text = urlencode($_POST['name']);
+            $qr_text = urlencode($name);
 
             //Using Google Chart API
             $qr_url = "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=$qr_text&choe=UTF-8";
@@ -25,7 +25,7 @@
             
             if (file_put_contents($file_path, $qr_image)) {
                 $_SESSION['generatedImg'] = $file_path;
-                header('Location: index.php?image=' . $fiel_path);
+                header('Location: index.php');
             } else {
                 $_SESSION['error'] = "QR code generation failed";
                 header("Location: index.php");
