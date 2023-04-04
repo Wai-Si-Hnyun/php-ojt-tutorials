@@ -54,22 +54,21 @@
                                     : $post['content']; ?>
                                 </td>
                                 <td>
-                                    <?php echo ($post['is_published'] == 1) ? 'Published' : 'Unpublished' ?>
+                                    <?php echo ($post['is_published'] == 1) 
+                                        ? 'Published' : 'Unpublished' ?>
                                 </td>
                                 <td>
                                     <?php echo $db->formatDate($post['created_datetime']); ?>
                                 </td>
                                 <td>
-                                    <a href="detail.php?id=<?php echo $post['id'] ?>" class="btn btn-primary">
-                                        View
+                                    <a href="detail.php?id=<?php echo $post['id'] ?>" 
+                                        class="btn btn-primary">View
                                     </a>
-                                    <a href="edit.php?id=<?php echo $post['id'] ?>" class="btn btn-success">
-                                        Edit
+                                    <a href="edit.php?id=<?php echo $post['id'] ?>" 
+                                        class="btn btn-success">Edit
                                     </a>
-                                    <!-- <a href="index.php?id=<?php echo $post['id'] ?>" class="deleteBtn btn btn-danger">
-                                        Delete
-                                    </a> -->
-                                    <button onclick="deletePost(<?php echo $post['id']; ?>)" class="btn btn-danger">Delete</button>
+                                    <button onclick="deletePost(<?php echo $post['id']; ?>)"
+                                        class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
