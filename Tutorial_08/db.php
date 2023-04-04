@@ -6,7 +6,7 @@ class DB
 
     public function __construct()
     {
-        $this->connection = mysqli_connect('localhost', 'root', 'Aeiou6453!', 'blog');
+        $this->connection = mysqli_connect('localhost', 'root', 'root', 'blog');
 
         if (!$this->connection) {
             die('Connection failed: ' . mysqli_connect_error());
