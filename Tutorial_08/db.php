@@ -1,9 +1,20 @@
 <?php
 
+/**
+ * CRUD of posts table class
+ */
 class DB
 {
+    /**
+     * Variable of database connection
+     *
+     * @var mixed boolean or mysqli
+     */
     protected $connection;
 
+    /**
+     * Constructor for database connection
+     */
     public function __construct()
     {
         $this->connection = mysqli_connect('localhost', 'root', 'root', 'blog');
