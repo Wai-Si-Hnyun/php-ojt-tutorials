@@ -246,14 +246,29 @@ class DB
         return $dates;
     }
 
+    /**
+     * Function for weekly data
+     *
+     * @param array $dates fetched dates
+     * @return array $data weekly dates
+     */
     public function processWeeklyData($dates)
     {
-        $data = array_fill_keys(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], 0);
+        $data = array_fill_keys([
+            'Monday', 
+            'Tuesday', 
+            'Wednesday', 
+            'Thursday', 
+            'Friday', 
+            'Saturday', 
+            'Sunday'
+        ], 0);
         $currentWeek = date('W');
         $currentYear = date('Y');
         
         foreach ($dates as $date) {
-            if (date('Y', strtotime($date)) == $currentYear && date('W', strtotime($date)) == $currentWeek) {
+            if (date('Y', strtotime($date)) == $currentYear 
+                    && date('W', strtotime($date)) == $currentWeek) {
                 $weekday = date('l', strtotime($date));
 
                 switch ($weekday) {
@@ -285,6 +300,12 @@ class DB
         return $data;
     }
 
+    /**
+     * Function for monthly datas
+     *
+     * @param array $dates fetched dates
+     * @return array array of monthly dates, currentMonth and currentYear
+     */
     public function processMonthlyData($dates)
     {
         $currentMonth = date('m');
@@ -292,7 +313,8 @@ class DB
         $datesInMonth = array_fill_keys(range(1, date('t')), 0);
 
         foreach ($dates as $date) {
-            if (date('Y', strtotime($date)) == $currentYear && date('m', strtotime($date)) == $currentMonth) {
+            if (date('Y', strtotime($date)) == $currentYear 
+                    && date('m', strtotime($date)) == $currentMonth) {
                 $day = (int) date('j', strtotime($date));
                 $datesInMonth[$day]++;
             }
@@ -300,7 +322,13 @@ class DB
 
         return [$datesInMonth, $currentMonth, $currentYear];
     }
-
+    
+    /**
+     * Function for yearly data
+     *
+     * @param array $dates fetched dates
+     * @return array $monthsInYear
+     */
     public function processYearlyData($dates)
     {
         $currentYear = date('Y');
