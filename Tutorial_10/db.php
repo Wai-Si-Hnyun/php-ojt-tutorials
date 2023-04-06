@@ -22,7 +22,7 @@ class DB
     public function __construct()
     {
         //db connection
-        $this->connection = new mysqli('localhost', 'root', 'Aeiou6453!', 'blog');
+        $this->connection = new mysqli('localhost', 'root', 'root', 'blog');
 
         if ($this->connection->connect_error) {
             die('Connection failed: ' . $this->connection->connect_error);
