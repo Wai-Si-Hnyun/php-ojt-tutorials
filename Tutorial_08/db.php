@@ -17,10 +17,29 @@ class DB
      */
     public function __construct()
     {
-        $this->connection = mysqli_connect('localhost', 'root', 'root', 'blog');
+        $servername = 'localhost';
+        $username = 'root';
+        $password = 'Aeiou6453!';
+        $dbname = 'blog';
 
+        //Create connection
+        $this->connection = mysqli_connect($servername, $username, $password);
+
+        //Check connection
         if (!$this->connection) {
             die('Connection failed: ' . mysqli_connect_error());
+        }
+
+        //Check database exist or not
+        if ($this->checkDatabaseExist($dbname)) {
+            mysqli_select_db($this->connection, $dbname);
+        } else {
+            $this->createDatabase($dbname);
+        }
+
+        //Check table posts exit or not
+        if (!$this->checkPostTableExit($dbname)) {
+            $this->createPostTable($dbname);
         }
     }
 
@@ -102,7 +121,7 @@ class DB
             if (empty($title)) {
                 $response['errors']['title'] = 'Title field is required';
             }
-            
+
             if (empty($content)) {
                 $response['errors']['content'] = 'Content field is required';
             }
@@ -148,7 +167,7 @@ class DB
             if (empty($title)) {
                 $_SESSION['errors']['title'] = 'Title field is required';
             }
-            
+
             if (empty($content)) {
                 $_SESSION['errors']['content'] = 'Content field is required';
             }
@@ -191,6 +210,79 @@ class DB
         return $formatted_date;
     }
 
-}
+    /**
+     * Check database exist
+     *
+     * @param string $dbname
+     * @return boolean
+     */
+    private function checkDatabaseExist($dbname)
+    {
+        $check_db_query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
+                        WHERE SCHEMA_NAME = '$dbname'";
+        $result = $this->connection->query($check_db_query);
 
-?>
+        if (mysqli_num_rows($result) == 0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Create database
+     *
+     * @param string $dbname
+     * @return void
+     */
+    private function createDatabase($dbname)
+    {
+        $sql = "CREATE DATABASE $dbname";
+        if (!mysqli_query($this->connection, $sql)) {
+            die('Error: ' . mysqli_error($this->connection));
+        }
+    }
+
+    /**
+     * Check table posts exist
+     *
+     * @param string $dbname
+     * @return boolean
+     */
+    private function checkPostTableExit($dbname)
+    {
+        $check_table_query = "SELECT * FROM information_schema.tables
+                            WHERE table_schema = '$dbname'
+                            AND table_name = 'posts' LIMIT 1";
+
+        $result = $this->connection->query($check_table_query);
+
+        if (mysqli_num_rows($result) == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Create table posts
+     *
+     * @param string $dbname
+     * @return void
+     */
+    private function createPostTable($dbname)
+    {
+        $sql = "CREATE TABLE posts (
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            title VARCHAR(255) NOT NULL,
+            content TEXT NOT NULL,
+            is_published BOOLEAN NOT NULL,
+            created_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        )";
+
+        if (!mysqli_query($this->connection, $sql)) {
+            die('Error: ' . mysqli_error($this->connection));
+        }
+    }
+
+}
