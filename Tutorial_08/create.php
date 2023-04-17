@@ -1,12 +1,10 @@
 <?php
-
     require_once('db.php');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db = new DB();
         $data = $db->store();
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +33,7 @@
                             class="form-control 
                             <?php echo empty($data['errors']['title']) ? "" : "is-invalid" ?>">
                         <div class="invalid-feedback">
-                            <?php echo $data['errors']['title'] ?>
+                            <?php echo $data['errors']['title'] ?? '' ?>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -47,7 +45,7 @@
                                 ? "" 
                                 : $data['value']['content'] ?></textarea>
                         <div class="invalid-feedback">
-                            <?php echo $data['errors']['content'] ?>
+                            <?php echo $data['errors']['content'] ?? '' ?>
                         </div>
                     </div>
                     <div class="mb-3">

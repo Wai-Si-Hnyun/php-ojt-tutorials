@@ -69,11 +69,11 @@
                         <input type="checkbox" name="is_published"
                             id="isPublished" class="form-check d-inline-block me-2"
                             <?php 
-                                if (!isset($value['is_published'])) {
-                                    echo ($post['is_published'] == 1) ? "checked" : null;
-                                } else {
+                                if (in_array($value['is_published'], [0,1])) {
                                     echo ($value['is_published'] == 1) ? "checked" : null;
-                                }  
+                                } else {
+                                    echo ($post['is_published'] == 1) ? "checked" : null;
+                                }
                             ?>
                         >
                         <span>Publish</span>
