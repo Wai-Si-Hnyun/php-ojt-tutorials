@@ -1,10 +1,9 @@
 <?php
-    session_start();
+    require_once '../db.php';
 
     $email = $_GET['email'];
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        require_once '../db.php';
         $db = new DB();
         $db->resetPassword();
     }

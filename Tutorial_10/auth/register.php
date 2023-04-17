@@ -28,28 +28,31 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" placeholder="name" 
-                            value="<?php echo $res['old']['name'] ?>" class="form-control 
+                            value="<?php echo $res['old']['name'] ?? '' ?>" 
+                            class="form-control 
                             <?php echo empty($res['error']['name']) ? '' : 'is-invalid' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $res['error']['name'] ?>
+                            <?php echo $res['error']['name'] ?? '' ?>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" id="email" placeholder="name@example.com"
-                            value="<?php echo $res['old']['email'] ?>" class="form-control
+                            value="<?php echo $res['old']['email'] ?? '' ?>" 
+                            class="form-control
                             <?php echo empty($res['error']['email']) ? '' : 'is-invalid' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $res['error']['email'] ?>
+                            <?php echo $res['error']['email'] ?? '' ?>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
                         <input type="text" name="phone" id="phone" placeholder="09*********" 
-                            value="<?php echo $res['old']['phone'] ?>" class="form-control
+                            value="<?php echo $res['old']['phone'] ?? '' ?>" 
+                            class="form-control
                             <?php echo empty($res['error']['phone']) ? '' : 'is-invalid' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $res['error']['phone'] ?>
+                            <?php echo $res['error']['phone'] ?? '' ?>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -58,16 +61,17 @@
                             class="form-control
                             <?php echo empty($res['error']['password']) ? '' : 'is-invalid' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $res['error']['password'] ?>
+                            <?php echo $res['error']['password'] ?? '' ?>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" name="address" id="address"
-                            value="<?php echo $res['old']['address'] ?>" class="form-control
+                            value="<?php echo empty($res['old']['address']) ? '' : $res['old']['address'] ?>" 
+                            class="form-control
                             <?php echo empty($res['error']['address']) ? '' : 'is-invalid' ?>">
                         <div class="invalid-feedback">
-                            <?php echo $res['error']['address'] ?>
+                            <?php echo $res['error']['address'] ?? '' ?>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mb-3">Register</button>

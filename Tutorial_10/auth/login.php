@@ -1,7 +1,6 @@
 <?php
 
     require_once('../db.php');
-    session_start();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $db = new DB();
@@ -32,14 +31,23 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" id="email" 
-                            placeholder="name@example.com" class="form-control">
-                        <div class="invalid-feedback"></div>
+                            placeholder="name@example.com" class="form-control
+                                <?php echo empty($data['error']['email']) ? '' : 'is-invalid'; ?>"
+                            value="<?php echo empty($data['old']['email']) ? '' : $data['old']['email']; ?>"
+                            >
+                        <div class="invalid-feedback">
+                            <?php echo $data['error']['email'] ?>
+                        </div>
                     </div>
                     <div class="mb-1">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" id="password" 
-                            placeholder="password" class="form-control">
-                        <div class="invalid-feedback"></div>
+                            placeholder="password" class="form-control
+                                <?php echo empty($data['error']['password']) ? '' : 'is-invalid'; ?>"
+                            >
+                        <div class="invalid-feedback">
+                            <?php echo $data['error']['password'] ?>
+                        </div>
                     </div>
                     <a href="/auth/forget_password.php" class="text-decoration-none">
                         forget password?

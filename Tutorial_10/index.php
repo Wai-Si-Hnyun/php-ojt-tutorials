@@ -1,5 +1,5 @@
 <?php
-    session_start();
+
     require_once('create_table.php');
     require_once('db.php');
 

@@ -22,7 +22,7 @@ class DB
     public function __construct()
     {
         //db connection
-        $this->connection = new mysqli('localhost', 'root', 'root', 'blog');
+        $this->connection = new mysqli('localhost', 'root', 'Aeiou6453!', 'blog');
 
         if ($this->connection->connect_error) {
             die('Connection failed: ' . $this->connection->connect_error);
@@ -308,7 +308,7 @@ class DB
 
         $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
+        if ($result->num_rows == 1) {
             return true;
         } else {
             return false;
@@ -453,6 +453,8 @@ class DB
             if (empty($address)) {
                 $result['error']['address'] = 'Address field is required';
             }
+
+            $result['status'] = 'error';
         }
 
         return $result;
@@ -475,11 +477,11 @@ class DB
             //Check if email already exists
             if (!$this->validateEmail($email)) {
                 $result['error']['email'] = 'Email does not exist';
-            }
-
-            //Check if password is valid
-            if (!($user = $this->checkPasswordEqualOrNot($password, $email))) {
-                $result['error']['password'] = 'Password is invalid';
+            } else {
+                //Check if password is valid
+                if (!($user = $this->checkPasswordEqualOrNot($password, $email))) {
+                    $result['error']['password'] = 'Password is invalid';
+                }
             }
 
             //Check if there are no errors
@@ -498,6 +500,8 @@ class DB
             if (empty($password)) {
                 $result['error']['password'] = 'Password field is required';
             }
+
+            $result['status'] = 'error';
         }
 
         return $result;
@@ -536,6 +540,7 @@ class DB
             if (empty($email)) {
                 $result['error']['email'] = 'Email field is required';
             }
+            $result['status'] = 'error';
         }
 
         return $result;
@@ -577,8 +582,8 @@ class DB
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'waisihnyun07@gmail.com';
-            $mail->Password = 'rcebpoorseaynpqi';
+            $mail->Username = 'yourhostmail@example.com';
+            $mail->Password = 'yourpassword';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
@@ -603,7 +608,7 @@ class DB
             $mail->send();
 
         } catch (Exception $e) {
-            echo "Failed to send email. Error: {$mail->ErrorInfo}";
+            die("Failed to send email. Error: {$mail->ErrorInfo}");
         }
     }
 
