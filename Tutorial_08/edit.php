@@ -9,6 +9,8 @@
     $errors['content'] = isset($_SESSION['errors']['content']) ? $_SESSION['errors']['content'] : '';
     $value['title'] = isset($_SESSION['value']['title']) ? $_SESSION['value']['title'] : '';
     $value['content'] = isset($_SESSION['value']['content']) ? $_SESSION['value']['content'] : '';
+    $value['is_published'] = isset($_SESSION['value']['is_published']) ?
+                            $_SESSION['value']['is_published'] : '';
 
     //unset the session data
     unset($_SESSION['value']);
@@ -42,9 +44,8 @@
                         <label for="title" class="form-label">Title</label>
                         <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
                         <input type="text" name="title" id="title" 
-                            placeholder="<?php echo $post['title'] ?>"
                             value="<?php echo empty($value['title']) 
-                                    ? "" 
+                                    ? $post['title'] 
                                     : $value['title'] ?>"
                             class="form-control 
                             <?php echo empty($errors['title']) ? "" : "is-invalid" ?>">
@@ -55,11 +56,10 @@
                     <div class="mb-3">
                         <label for="content" class="form-label">Content</label>
                         <textarea name="content" id="content" rows="5" cols="8"
-                            placeholder="<?php echo $post['content'] ?>"
                             class="form-control 
                             <?php echo empty($errors['content']) ? "" : "is-invalid" ?>"
                             ><?php echo empty($value['content']) 
-                                    ? "" 
+                                    ? $post['content'] 
                                     : $value['content'] ?></textarea>
                         <div class="invalid-feedback">
                             <?php echo $errors['content'] ?>
@@ -68,13 +68,19 @@
                     <div class="mb-3">
                         <input type="checkbox" name="is_published"
                             id="isPublished" class="form-check d-inline-block me-2"
-                            <?php echo ($post['is_published'] == 1) ? "checked" : null ?>
+                            <?php 
+                                if (!isset($value['is_published'])) {
+                                    echo ($post['is_published'] == 1) ? "checked" : null;
+                                } else {
+                                    echo ($value['is_published'] == 1) ? "checked" : null;
+                                }  
+                            ?>
                         >
                         <span>Publish</span>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <a href="index.php" class="btn btn-secondary">Back</a>
-                        <button type="submit" class="btn btn-primary">Create</a>
+                        <button type="submit" class="btn btn-primary">Update</a>
                     </div>
                 </form>
             </div>

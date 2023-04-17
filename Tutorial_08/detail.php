@@ -28,7 +28,10 @@
                         <span><?php echo $db->formatDate($post['created_datetime']) ?></span>
                     </div>
                 <?php else: ?>
-                    <div class="my-3">Unpublished</div>
+                    <div class="my-3">
+                        <span class="fst-italic me-1">Unpublished</span>
+                        <span><?php echo $db->formatDate($post['created_datetime']) ?></span>
+                    </div>
                 <?php endif; ?>
                 <p class="text-black-50"><?php echo $post['content']; ?></p>
                 <a href="index.php" class="btn btn-secondary">Back</a>
