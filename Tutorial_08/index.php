@@ -48,9 +48,11 @@
                                 <th scope="row"><?php echo $post['id'] ?></td>
                                 <td><?php echo $post['title'] ?></td>
                                 <td>
-                                    <?php echo (strlen($post['content']) > 30) 
+                                    <?php 
+                                    echo (strlen($post['content']) > 30) 
                                     ? substr($post['content'], 0, 30) . '...' 
-                                    : $post['content']; ?>
+                                    : $post['content']; 
+                                    ?>
                                 </td>
                                 <td>
                                     <?php echo ($post['is_published'] == 1) 

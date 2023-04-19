@@ -35,6 +35,7 @@ class DB
             mysqli_select_db($this->connection, $dbname);
         } else {
             $this->createDatabase($dbname);
+            mysqli_select_db($this->connection, $dbname);
         }
 
         //Check table posts exit or not

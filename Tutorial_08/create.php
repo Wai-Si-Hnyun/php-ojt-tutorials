@@ -51,7 +51,11 @@
                     <div class="mb-3">
                         <input type="checkbox" name="is_published" 
                             id="isPublished" class="form-check d-inline-block me-2"
-                            <?php echo ($data['value']['is_published'] == 1) ? "checked" : null ?> 
+                            <?php 
+                                if (isset($data['value']['is_published'])) {
+                                    echo ($data['value']['is_published'] == 1) ? "checked" : null;
+                                }
+                            ?> 
                         >
                         <span>Publish</span>
                     </div>
