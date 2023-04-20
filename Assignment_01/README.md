@@ -46,7 +46,7 @@ Follow these steps to set up the Laravel project:
 
 6. Configure the database connection in the .env file:
 
-```bash
+```php
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
