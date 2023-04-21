@@ -2,7 +2,20 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('students.create') }}" class="btn btn-primary mt-5 mb-3">Create</a>
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('students.create') }}" class="btn btn-primary mt-5 mb-3">Create</a>
+            <div class="mt-5 d-flex">
+                <div>
+                    <a href="{{ route('students.export') }}" class="btn btn-primary">Export</a>
+                </div>
+                <form action="{{ route('students.import') }}" method="POST" 
+                    enctype="multipart/form-data" id="import-form">
+                    @csrf
+                    <input type="file" name="file" id="file" class="form-control" hidden>
+                    <button type="button" id="import-btn" class="btn btn-primary ms-2">Import</button>
+                </form>
+            </div>
+        </div>
         <div class="card rounded mb-5">
             <div class="card-header">
                 <h2>Student Lists</h2>
@@ -56,9 +69,23 @@
 @endsection
 
 @push('scripts')
-    <script>
-        function confirmDelete() {
-            return confirm('Are you sure to delete this item?');
-        }
-    </script>
+    <script src="{{ asset('js/script.js') }}"></script>
+
+    @if (session()->has('errors'))
+        <script>
+            const errors = @json(session('errors')->all());
+            window.onload = function() {
+                alert(errors);
+            }
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            window.onload = function() {
+                alert('{{ session("success") }}');
+            }
+        </script>
+    @endif
+
 @endpush

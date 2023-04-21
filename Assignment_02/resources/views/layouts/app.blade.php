@@ -12,7 +12,7 @@
 <body>
     <header class="bg-light">
         <div class="container d-flex justify-content-between">
-            <h1>Navbar</h1>
+            <h1 class="fs-3 mt-2">Home</h1>
             <nav class="pt-3">
                 <ul class="d-flex list-unstyled">
                     <li>
