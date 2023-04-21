@@ -126,7 +126,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Import CSV file to db
+     * Import CSV file
      *
      * @param CsvRequest $request
      * @return \Illuminate\Http\RedirectResponse
