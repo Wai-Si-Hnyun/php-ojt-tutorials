@@ -43,7 +43,7 @@ class StudentRequest extends FormRequest
                 'required', 
                 'max:15', 
                 'min:7', 
-                'unique:students,phone'.$id , 
+                'unique:students,phone,'.$id , 
                 'regex:/^(\+\d+|\d+)$/'
             ];
             $rules['email'] = 'required|max:255|unique:students,email,'.$id;
