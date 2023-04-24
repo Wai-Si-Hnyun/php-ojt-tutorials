@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\View\View;
 use App\Http\Requests\MajorRequest;
-use Illuminate\Validation\ValidationException;
 use App\Contracts\Services\MajorServiceInterface;
 
 class MajorController extends Controller
@@ -53,12 +52,8 @@ class MajorController extends Controller
      */
     public function store(MajorRequest $majorRequest)
     {
-        try {
-            $this->majorService->storeMajor($majorRequest->toArray());
-            return redirect()->route('majors.index');
-        } catch (ValidationException $e) {
-            return redirect()->route('majors.create')->withInput()->withErrors($e->validator);
-        }
+        $this->majorService->storeMajor($majorRequest->toArray());
+        return redirect()->route('majors.index');
     }
 
     /**
@@ -82,13 +77,9 @@ class MajorController extends Controller
      */
     public function update(MajorRequest $majorRequest, $id)
     {
-        try {
-            $data = $majorRequest->toArray();
-            $this->majorService->updateMajor($data, $id);
-            return redirect()->route('majors.index');
-        } catch (ValidationException $e) {
-            return redirect()->route('majors.edit', $id)->withInput()->withErrors($e->validator);
-        }
+        $data = $majorRequest->toArray();
+        $this->majorService->updateMajor($data, $id);
+        return redirect()->route('majors.index');
     }
 
     /**

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CsvRequest;
 use Illuminate\View\View;
 use App\Http\Requests\StudentRequest;
-use Illuminate\Validation\ValidationException;
 use App\Contracts\Services\MajorServiceInterface;
 use App\Contracts\Services\StudentServiceInterface;
 
@@ -64,12 +63,8 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        try {
-            $this->studentService->storeStudent($request->toArray());
-            return redirect()->route('students.index');
-        } catch(ValidationException $e) {
-            return redirect()->route('students.create')->withInput()->withErrors($e->validator);
-        }
+        $this->studentService->storeStudent($request->toArray());
+        return redirect()->route('students.index');
     }
 
     /**
@@ -95,12 +90,8 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, $id)
     {
-        try {
-            $this->studentService->updateStudent($request->toArray(), $id);
-            return redirect()->route('students.index');
-        } catch (ValidationException $e) {
-            return redirect()->route('students.edit', $id)->withInput()->withErrors($e->validator);
-        }
+        $this->studentService->updateStudent($request->toArray(), $id);
+        return redirect()->route('students.index');
     }
 
     /**
@@ -133,14 +124,10 @@ class StudentController extends Controller
      */
     public function importCsv(CsvRequest $request)
     {
-        try {
-            $file = $request->file('file');
-            $this->studentService->importCsv($file);
-            return redirect()->route('students.index')
-                ->with('success', 'Student CSV file imported successfully.');
-        } catch (ValidationException $e) {
-            return redirect()->route('students.index')->withErrors($e->validator);
-        }
+        $file = $request->file('file');
+        $this->studentService->importCsv($file);
+        return redirect()->route('students.index')
+            ->with('success', 'Student CSV file imported successfully.');
     }
 
 }

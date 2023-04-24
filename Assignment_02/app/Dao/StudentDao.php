@@ -18,7 +18,7 @@ class StudentDao implements StudentDaoInterface
      */
     public function getStudents(): object
     {
-        return Student::with('major')->paginate(5);
+        return Student::with('major')->orderBy('id', 'desc')->paginate(5);
     }
 
     /**

@@ -24,12 +24,12 @@ class MajorRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|unique:majors,name,',
+            'name' => 'required|max:255|unique:majors,name,',
         ];
 
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $id = $this->route('id');
-            $rules['name'] = 'required|unique:majors,name,'.$id;
+            $rules['name'] = 'required|max:255|unique:majors,name,'.$id;
         }
 
         return $rules;

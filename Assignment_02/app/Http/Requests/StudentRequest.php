@@ -24,17 +24,29 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:255',
             'major_id' => 'required',
-            'phone' => ['required', 'unique:students,phone', 'regex:/^(\+\d+|\d+)$/'],
-            'email' => 'required|unique:students,email',
-            'address' => 'required',
+            'phone' => [
+                'required', 
+                'max:15', 
+                'min:7', 
+                'unique:students,phone', 
+                'regex:/^(\+\d+|\d+)$/'
+            ],
+            'email' => 'required|max:255|unique:students,email',
+            'address' => 'required|max:255',
         ];
 
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             $id = $this->route('id');
-            $rules['phone'] = 'required|unique:students,phone,' . $id;
-            $rules['email'] = 'required|unique:students,email,' . $id;
+            $rules['phone'] = [
+                'required', 
+                'max:15', 
+                'min:7', 
+                'unique:students,phone'.$id , 
+                'regex:/^(\+\d+|\d+)$/'
+            ];
+            $rules['email'] = 'required|max:255|unique:students,email,'.$id;
         }
 
         return $rules;

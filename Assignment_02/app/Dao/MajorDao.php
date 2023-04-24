@@ -14,7 +14,7 @@ class MajorDao implements MajorDaoInterface
      */
     public function getMajors(): object
     {
-        return Major::paginate(6);
+        return Major::orderBy('id', 'desc')->paginate(6);
     }
 
     /**

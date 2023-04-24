@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Str;    
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -38,11 +42,11 @@
                             @foreach ($students as $student)
                                 <tr>
                                     <th>{{ $student->id }}</th>
-                                    <td>{{ $student->name }}</td>
-                                    <td>{{ $student->major->name }}</td>
+                                    <td>{{ Str::limit($student->name, 20, '...') }}</td>
+                                    <td>{{ Str::limit($student->major->name, 20, '...') }}</td>
                                     <td>{{ $student->phone }}</td>
-                                    <td>{{ $student->email }}</td>
-                                    <td>{{ $student->address }}</td>
+                                    <td>{{ Str::limit($student->email, 20, '...') }}</td>
+                                    <td>{{ Str::limit($student->address, 20, '...') }}</td>
                                     <td class="d-flex">
                                         <a href="{{ route('students.edit', $student->id) }}"
                                             class="btn btn-sm btn-success">Edit</a>
