@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Str;    
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -21,12 +25,12 @@
                             @foreach ($majors as $major)
                                 <tr>
                                     <th>{{ $major->id }}</th>
-                                    <td>{{ $major->name }}</td>
+                                    <td>{{ Str::limit($major->name, 25, '...') }}</td>
                                     <td class="d-flex">
                                         <a href="{{ route('majors.edit', $major->id) }}"
                                             class="btn btn-sm btn-success">Edit</a>
                                         <form action="{{ route('majors.destroy', $major->id) }}" 
-                                            method="POST">
+                                            method="POST" onsubmit="return confirmDelete();">
                                             @csrf
                                             @method("DELETE")
                                             <button type="submit" class="ms-2 btn btn-sm btn-danger">
@@ -46,3 +50,11 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function confirmDelete() {
+            return confirm('Are you sure to delete this item?');
+        }
+    </script>
+@endpush
