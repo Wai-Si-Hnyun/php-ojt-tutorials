@@ -67,5 +67,4 @@ interface StudentServiceInterface
      * @return object
      */
     public function search($searchTerm):  object;
-    
 }

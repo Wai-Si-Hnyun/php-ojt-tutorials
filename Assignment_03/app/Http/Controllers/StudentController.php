@@ -42,6 +42,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->studentService->getStudents();
+
         return view('students.index', compact('students'));
     }
 
@@ -53,6 +54,7 @@ class StudentController extends Controller
     public function create()
     {
         $majors = $this->majorService->getMajors();
+
         return view('students.create', compact('majors'));
     }
 
@@ -65,6 +67,7 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $this->studentService->storeStudent($request->toArray());
+
         return redirect()->route('students.index');
     }
 
@@ -92,6 +95,7 @@ class StudentController extends Controller
     public function update(StudentRequest $request, $id)
     {
         $this->studentService->updateStudent($request->toArray(), $id);
+
         return redirect()->route('students.index');
     }
 
@@ -104,6 +108,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $this->studentService->deleteStudent($id);
+
         return redirect()->route('students.index');
     }
 
@@ -127,6 +132,7 @@ class StudentController extends Controller
     {
         $file = $request->file('file');
         $this->studentService->importCsv($file);
+
         return redirect()->route('students.index')
             ->with('success', 'Student CSV file imported successfully.');
     }
@@ -140,10 +146,8 @@ class StudentController extends Controller
     public function search(Request $request)
     {
         $searchTerm = $request->searchTerm;
-
         $students = $this->studentService->search($searchTerm);
         
         return view('students.index', ['students' => $students]);
     }
-
 }
