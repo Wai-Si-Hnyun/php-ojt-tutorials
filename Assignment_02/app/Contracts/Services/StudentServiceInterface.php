@@ -59,6 +59,4 @@ interface StudentServiceInterface
      * @return void
      */
     public function importCsv($file): void;
-
-
 }
