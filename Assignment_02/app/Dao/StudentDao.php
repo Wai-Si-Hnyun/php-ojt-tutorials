@@ -52,8 +52,8 @@ class StudentDao implements StudentDaoInterface
      */
     public function updateStudent(array $data, int $id): void
     {
-        $Student = Student::find($id);
-        $Student->update($data);
+        $student = Student::find($id);
+        $student->update($data);
     }
 
     /**
@@ -64,8 +64,8 @@ class StudentDao implements StudentDaoInterface
      */
     public function deleteStudent(int $id): void
     {
-        $Student = Student::find($id);
-        $Student->delete();
+        $student = Student::find($id);
+        $student->delete();
     }
 
     /**
