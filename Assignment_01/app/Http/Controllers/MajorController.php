@@ -31,6 +31,7 @@ class MajorController extends Controller
     public function index()
     {
         $majors = $this->majorService->getMajors();
+
         return view('major.index', compact('majors'));
     }
 
@@ -53,6 +54,7 @@ class MajorController extends Controller
     public function store(MajorRequest $majorRequest)
     {
         $this->majorService->storeMajor($majorRequest->toArray());
+
         return redirect()->route('majors.index');
     }
 
@@ -65,6 +67,7 @@ class MajorController extends Controller
     public function edit($id)
     {
         $major = $this->majorService->getMajorById($id);
+
         return view('major.edit', compact('major'));
     }
 
@@ -79,6 +82,7 @@ class MajorController extends Controller
     {
         $data = $majorRequest->toArray();
         $this->majorService->updateMajor($data, $id);
+
         return redirect()->route('majors.index');
     }
 
@@ -91,6 +95,7 @@ class MajorController extends Controller
     public function destroy($id)
     {
         $this->majorService->deleteMajor($id);
+        
         return redirect()->route('majors.index');
     }
 }

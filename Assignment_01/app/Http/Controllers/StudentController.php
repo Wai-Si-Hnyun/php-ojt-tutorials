@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Requests\StudentRequest;
 use App\Contracts\Services\MajorServiceInterface;
 use App\Contracts\Services\StudentServiceInterface;
@@ -41,6 +40,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = $this->studentService->getStudents();
+
         return view('students.index', compact('students'));
     }
 
@@ -52,6 +52,7 @@ class StudentController extends Controller
     public function create()
     {
         $majors = $this->majorService->getMajors();
+
         return view('students.create', compact('majors'));
     }
 
@@ -64,6 +65,7 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         $this->studentService->storeStudent($request->toArray());
+
         return redirect()->route('students.index');
     }
 
@@ -91,6 +93,7 @@ class StudentController extends Controller
     public function update(StudentRequest $request, $id)
     {
         $this->studentService->updateStudent($request->toArray(), $id);
+
         return redirect()->route('students.index');
     }
 
@@ -103,7 +106,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $this->studentService->deleteStudent($id);
+
         return redirect()->route('students.index');
     }
-
 }
