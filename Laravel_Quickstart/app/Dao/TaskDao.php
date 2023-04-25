@@ -14,7 +14,7 @@ class TaskDao implements TaskDaoInterface
      */
     public function getTasks(): object
     {
-        return Task::all();
+        return Task::orderBy('id', 'desc')->get();
     }
 
     /**

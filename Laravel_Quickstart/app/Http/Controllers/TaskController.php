@@ -39,20 +39,13 @@ class TaskController extends Controller
     /**
      * Store new task
      * 
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param TaskRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TaskRequest $request)
     {
-        try {
-            
-            $this->taskService->createTask($request->toArray());
-            return redirect()->route('task.index');
-
-        } catch (ValidationException $e) {
-
-            return redirect()->route('task.index')->withInput()->withErrors($e->validator);
-
-        }
+        $this->taskService->createTask($request->toArray());
+        return redirect()->route('task.index');
     }
 
     /**
