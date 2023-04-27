@@ -15,7 +15,7 @@ class MajorService implements MajorServiceInterface
     /**
      * Constructor for major service
      *
-     * @param MajorDaoInterface $majorDao
+     * @param \App\Contracts\Dao\MajorDaoInterface $majorDao
      */
     public function __construct(MajorDaoInterface $majorDao)
     {
