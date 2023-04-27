@@ -23,16 +23,20 @@
                         </thead>
                         <tbody>
                             @foreach ($majors as $major)
-                                <tr data-id="{{ $major->id }}">
+                                <tr>
                                     <th>{{ $major->id }}</th>
                                     <td>{{ Str::limit($major->name, 25, '...') }}</td>
                                     <td class="d-flex">
                                         <a href="{{ route('majors.edit', $major->id) }}"
                                             class="btn btn-sm btn-success">Edit</a>
-                                        <button class="ms-2 btn btn-sm btn-danger" 
-                                            onclick="deleteData(event, {{ $major->id }}, 'major')">
-                                            Delete
-                                        </button>
+                                        <form action="{{ route('majors.destroy', $major->id) }}" 
+                                            method="POST" onsubmit="return confirmDelete();">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="ms-2 btn btn-sm btn-danger">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -48,5 +52,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/axios.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush

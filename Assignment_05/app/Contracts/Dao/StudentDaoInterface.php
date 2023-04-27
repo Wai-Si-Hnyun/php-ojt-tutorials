@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Contracts\Dao;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 interface StudentDaoInterface
 {
@@ -41,4 +42,27 @@ interface StudentDaoInterface
      * @return void
      */
     public function deleteStudent(int $id): void;
+
+    /**
+     * Export students to csv
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function exportCsv(): BinaryFileResponse;
+
+    /**
+     * Import csv data to database
+     *
+     * @param string|array $file
+     * @return void
+     */
+    public function importCsv($file): void;
+
+    /**
+     * Studnet search function
+     *
+     * @param string $searchTerm
+     * @return object
+     */
+    public function search($searchTerm): object;
 }

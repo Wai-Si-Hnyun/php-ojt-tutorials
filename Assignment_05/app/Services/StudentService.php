@@ -6,6 +6,7 @@ use App\Mail\MyEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Contracts\Dao\StudentDaoInterface;
 use App\Contracts\Services\StudentServiceInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StudentService implements StudentServiceInterface
 {
@@ -56,6 +57,7 @@ class StudentService implements StudentServiceInterface
 
         $this->sendMail($student->email);
     }
+
     /**
      * Update Student
      *
@@ -76,6 +78,38 @@ class StudentService implements StudentServiceInterface
     public function deleteStudent(int $id): void
     {
         $this->studentDao->deleteStudent($id);
+    }
+
+    /**
+     * Export students to csv
+     *
+     * @return BinaryFileResponse
+     */
+    public function exportCsv(): BinaryFileResponse
+    {
+        return $this->studentDao->exportCsv();
+    }
+
+    /**
+     * Import data from csv file to database
+     *
+     * @param string|array $file
+     * @return void
+     */
+    public function importCsv($file): void
+    {
+        $this->studentDao->importCsv($file);
+    }
+
+    /**
+     * Student search function
+     *
+     * @param string $searchTerm
+     * @return object
+     */
+    public function search($searchTerm): object
+    {
+        return $this->studentDao->search($searchTerm);
     }
 
     /**

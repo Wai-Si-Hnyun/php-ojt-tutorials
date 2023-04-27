@@ -3,7 +3,12 @@
 namespace App\Dao;
 
 use App\Models\Student;
+use App\Exports\StudentsExport;
+use App\Imports\StudentsImport;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Dao\StudentDaoInterface;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StudentDao implements StudentDaoInterface
 {
@@ -64,5 +69,52 @@ class StudentDao implements StudentDaoInterface
     {
         $student = Student::find($id);
         $student->delete();
+    }
+
+    /**
+     * Export stadents data to CSV file
+     *
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function exportCsv(): BinaryFileResponse
+    {
+        return Excel::download(new StudentsExport, 'students.csv');
+    }
+
+    /**
+     * Import students data from CSV file to database
+     *
+     * @param string|array $file
+     * @return void
+     */
+    public function importCsv($file): void
+    {
+        Excel::import(new StudentsImport(), $file);
+    }
+
+    /**
+     * Student search
+     *
+     * @param string $searchTerm
+     * @return object
+     */
+    public function search($searchTerm): object
+    {
+        $searchTerm = preg_replace("/[^a-zA-Z0-9\s]/", "", $searchTerm);
+        $searchTerm = str_replace(" ", "%", $searchTerm);
+
+        $students = DB::table('students')
+                        ->join('majors', 'students.major_id', '=', 'majors.id')
+                        ->select('students.*', 'majors.name as major_name')
+                        ->where('students.name', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('majors.name', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('students.email', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('students.phone', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('students.address', 'LIKE', '%' . $searchTerm . '%')
+                        ->orderBy('students.id', 'desc')
+                        ->paginate(5);
+        
+        return $students;
+        
     }
 }

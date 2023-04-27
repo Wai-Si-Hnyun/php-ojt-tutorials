@@ -23,8 +23,6 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('id');
-
         $rules = [
             'name' => 'required|max:255',
             'major_id' => 'required',
@@ -32,12 +30,24 @@ class StudentRequest extends FormRequest
                 'required', 
                 'max:15', 
                 'min:7', 
-                'unique:students,phone' . ($id ? ',' . $id : ''),
+                'unique:students,phone', 
                 'regex:/^(\+\d+|\d+)$/'
             ],
-            'email' => 'required|max:255|unique:students,email' . ($id ? ',' . $id : ''),
+            'email' => 'required|max:255|unique:students,email',
             'address' => 'required|max:255',
         ];
+
+        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
+            $id = $this->route('id');
+            $rules['phone'] = [
+                'required', 
+                'max:15', 
+                'min:7', 
+                'unique:students,phone,'.$id , 
+                'regex:/^(\+\d+|\d+)$/'
+            ];
+            $rules['email'] = 'required|max:255|unique:students,email,'.$id;
+        }
 
         return $rules;
     }

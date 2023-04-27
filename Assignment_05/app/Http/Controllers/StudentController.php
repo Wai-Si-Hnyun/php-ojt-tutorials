@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Requests\CsvRequest;
 use App\Http\Requests\StudentRequest;
 use App\Contracts\Services\MajorServiceInterface;
 use App\Contracts\Services\StudentServiceInterface;
@@ -60,11 +62,13 @@ class StudentController extends Controller
      * Create new student
      *
      * @param StudentRequest $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StudentRequest $request)
     {
         $this->studentService->storeStudent($request->toArray());
+
+        return redirect()->route('students.index');
     }
 
     /**
@@ -99,10 +103,51 @@ class StudentController extends Controller
      * Delete student
      *
      * @param int $id
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         $this->studentService->deleteStudent($id);
+
+        return redirect()->route('students.index');
+    }
+
+    /**
+     * Export CSV
+     *
+     * @return mixed
+     */
+    public function exportCsv()
+    {
+        return $this->studentService->exportCsv();
+    }
+
+    /**
+     * Import CSV file
+     *
+     * @param CsvRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function importCsv(CsvRequest $request)
+    {
+        $file = $request->file('file');
+        $this->studentService->importCsv($file);
+
+        return redirect()->route('students.index')
+            ->with('success', 'Student CSV file imported successfully.');
+    }
+
+    /**
+     * Studnet search function
+     *
+     * @param Request $request
+     * @return object
+     */
+    public function search(Request $request)
+    {
+        $searchTerm = $request->searchTerm;
+        $students = $this->studentService->search($searchTerm);
+        
+        return view('students.index', ['students' => $students]);
     }
 }

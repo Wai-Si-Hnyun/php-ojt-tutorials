@@ -2,6 +2,8 @@
 
 namespace App\Contracts\Services;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
 interface StudentServiceInterface
 {
     /**
@@ -42,6 +44,29 @@ interface StudentServiceInterface
      * @return void
      */
     public function deleteStudent(int $id): void;
+
+    /**
+     * Ecport CSV file for students
+     *
+     * @return BinaryFileResponse
+     */
+    public function exportCsv(): BinaryFileResponse;
+
+    /**
+     * Import data from CSV file to database
+     *
+     * @param string|array $file
+     * @return void
+     */
+    public function importCsv($file): void;
+
+    /**
+     * Student search function
+     *
+     * @param string $searchTerm
+     * @return object
+     */
+    public function search($searchTerm):  object;
 
     /**
      * Mail send function

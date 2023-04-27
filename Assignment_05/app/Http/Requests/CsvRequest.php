@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MajorRequest extends FormRequest
+class CsvRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,8 @@ class MajorRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'name' => 'required|max:255|unique:majors,name,',
+        return [
+            'file' => 'required|mimes:csv',
         ];
-
-        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $id = $this->route('id');
-            $rules['name'] = 'required|max:255|unique:majors,name,'.$id;
-        }
-
-        return $rules;
     }
 }

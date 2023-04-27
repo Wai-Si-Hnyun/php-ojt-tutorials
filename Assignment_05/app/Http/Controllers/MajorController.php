@@ -49,11 +49,13 @@ class MajorController extends Controller
      * Create major
      *
      * @param MajorRequest $majorRequest
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(MajorRequest $majorRequest)
     {
         $this->majorService->storeMajor($majorRequest->toArray());
+
+        return redirect()->route('majors.index');
     }
 
     /**
@@ -88,10 +90,12 @@ class MajorController extends Controller
      * Delete major
      *
      * @param int $id
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
         $this->majorService->deleteMajor($id);
+        
+        return redirect()->route('majors.index');
     }
 }

@@ -7,12 +7,20 @@
                 <h2>Major Edit</h2>
             </div>
             <div class="card-body">
-                <form id="majorUpdateForm">
-                    <input type="hidden" name="id" id="major_id" value="{{ $major->id }}">
+                <form action="{{ route('majors.update', $major->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" value="{{ $major->name }}"
-                            class="form-control">
+                            class="form-control @error('name')
+                                is-invalid
+                            @enderror">
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <a href="{{ route('majors.index') }}" class="btn btn-secondary">Back</a>
@@ -23,18 +31,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script src="{{ asset('js/axios.js') }}"></script>
-    <script>
-        document.getElementById('majorUpdateForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const id = document.getElementById('major_id').value;
-            const name = document.getElementById('name').value;
-            const route = `/majors/update/${id}`;
-
-            uploadMajorData(name, route);
-        })
-    </script>
-@endpush
