@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\CsvRequest;
 use App\Http\Requests\StudentRequest;
@@ -23,8 +22,8 @@ class StudentController extends Controller
     /**
      * constructor function for student controller
      *
-     * @param StudentServiceInterface $studentServiceInterface
-     * @param MajorServiceInterface $majorServiceInterface
+     * @param \App\Contracts\Services\StudentServiceInterface $studentServiceInterface
+     * @param \App\Contracts\Services\MajorServiceInterface $majorServiceInterface
      */
     public function __construct(
         StudentServiceInterface $studentServiceInterface,
@@ -37,7 +36,7 @@ class StudentController extends Controller
     /**
      * Get all students data and show
      *
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -49,7 +48,7 @@ class StudentController extends Controller
     /**
      * Redirect to create page
      *
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -61,7 +60,7 @@ class StudentController extends Controller
     /**
      * Create new student
      *
-     * @param StudentRequest $request
+     * @param \App\Http\Requests\StudentRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StudentRequest $request)
@@ -75,7 +74,7 @@ class StudentController extends Controller
      * redirect to edit page
      *
      * @param int $id
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -88,7 +87,7 @@ class StudentController extends Controller
     /**
      * Update student
      *
-     * @param StudentRequest $request
+     * @param \App\Http\Requests\StudentRequest $request
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -125,7 +124,7 @@ class StudentController extends Controller
     /**
      * Import CSV file
      *
-     * @param CsvRequest $request
+     * @param \App\Http\Requests\CsvRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function importCsv(CsvRequest $request)
@@ -140,7 +139,7 @@ class StudentController extends Controller
     /**
      * Studnet search function
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return object
      */
     public function search(Request $request)
