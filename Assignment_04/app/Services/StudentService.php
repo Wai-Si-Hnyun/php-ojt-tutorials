@@ -15,7 +15,7 @@ class StudentService implements StudentServiceInterface
     /**
      * Constructor for student service
      *
-     * @param StudentDaoInterface $studentDao
+     * @param \App\Contracts\Dao\StudentDaoInterface $studentDao
      */
     public function __construct(StudentDaoInterface $studentDao)
     {
