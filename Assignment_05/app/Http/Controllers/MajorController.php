@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Http\Requests\MajorRequest;
 use App\Contracts\Services\MajorServiceInterface;
 
@@ -16,7 +15,7 @@ class MajorController extends Controller
     /**
      * Constructor function for  major controller
      *
-     * @param MajorServiceInterface $majorServiceInterface
+     * @param \App\Contracts\Services\MajorServiceInterface $majorServiceInterface
      */
     public function __construct(MajorServiceInterface $majorServiceInterface)
     {
@@ -26,7 +25,7 @@ class MajorController extends Controller
     /**
      * Get majors
      *
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -38,7 +37,7 @@ class MajorController extends Controller
     /**
      * Redirect to create major page
      *
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -48,7 +47,7 @@ class MajorController extends Controller
     /**
      * Create major
      *
-     * @param MajorRequest $majorRequest
+     * @param \App\Http\Requests\MajorRequest $majorRequest
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(MajorRequest $majorRequest)
@@ -62,7 +61,7 @@ class MajorController extends Controller
      * Redirect to edit major page
      *
      * @param int $id
-     * @return View
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -74,7 +73,7 @@ class MajorController extends Controller
     /**
      * Update major
      *
-     * @param MajorRequest $majorRequest
+     * @param \App\Http\Requests\MajorRequest $majorRequest
      * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */

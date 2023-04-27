@@ -6,7 +6,6 @@ use App\Mail\MyEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Contracts\Dao\StudentDaoInterface;
 use App\Contracts\Services\StudentServiceInterface;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StudentService implements StudentServiceInterface
 {
@@ -18,7 +17,7 @@ class StudentService implements StudentServiceInterface
     /**
      * Constructor for student service
      *
-     * @param StudentDaoInterface $studentDao
+     * @param \App\Contracts\Dao\StudentDaoInterface $studentDao
      */
     public function __construct(StudentDaoInterface $studentDao)
     {
@@ -83,9 +82,9 @@ class StudentService implements StudentServiceInterface
     /**
      * Export students to csv
      *
-     * @return BinaryFileResponse
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function exportCsv(): BinaryFileResponse
+    public function exportCsv()
     {
         return $this->studentDao->exportCsv();
     }
