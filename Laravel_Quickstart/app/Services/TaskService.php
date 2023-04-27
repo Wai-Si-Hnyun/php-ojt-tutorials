@@ -11,6 +11,11 @@ class TaskService implements TaskServiceInterface
      */
     private $taskDao;
 
+    /**
+     * Constructor for TaskService
+     *
+     * @param \App\Contracts\Dao\TaskDaoInterface $taskDao
+     */
     public function __construct(TaskDaoInterface $taskDao)
     {
         $this->taskDao = $taskDao;

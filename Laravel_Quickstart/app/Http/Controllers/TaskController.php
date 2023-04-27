@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Http\Requests\TaskRequest;
-use Illuminate\Validation\ValidationException;
 use App\Contracts\Services\TaskServiceInterface;
 
 class TaskController extends Controller
@@ -17,7 +15,7 @@ class TaskController extends Controller
     /**
      * Create a costructor for task controller
      *
-     * @param TaskServiceInterface $taskServiceInterface
+     * @param \App\Contracts\Services\TaskServiceInterface $taskServiceInterface
      */
     public function __construct(TaskServiceInterface $taskServiceInterface)
     {
@@ -27,7 +25,7 @@ class TaskController extends Controller
     /**
      * Show Task Dashboard
      * 
-     *@return View task dashboard
+     *@return \Illuminate\View\View task dashboard
      */
     public function index()
     {
@@ -39,7 +37,7 @@ class TaskController extends Controller
     /**
      * Store new task
      * 
-     * @param TaskRequest $request
+     * @param  \App\Http\Requests\TaskRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(TaskRequest $request)
