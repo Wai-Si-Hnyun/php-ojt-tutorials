@@ -7,7 +7,6 @@ use App\Models\Student;
 use App\Imports\StudentsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Contracts\Dao\StudentDaoInterface;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StudentDao implements StudentDaoInterface
 {
@@ -73,7 +72,7 @@ class StudentDao implements StudentDaoInterface
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function exportCsv(): BinaryFileResponse
+    public function exportCsv()
     {
         return Excel::download(new StudentsExport, 'students.csv');
     }

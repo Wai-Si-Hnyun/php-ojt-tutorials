@@ -9,6 +9,12 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class StudentsImport implements ToModel, WithHeadingRow
 {
+    /**
+     * 
+     *
+     * @param array $row
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function model(array $row)
     {
         $majorName = $row['major'];

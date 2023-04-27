@@ -27,6 +27,11 @@ class StudentsExport implements FromCollection, WithHeadings
         });
     }
 
+    /**
+     * for CSV heading
+     *
+     * @return array
+     */
     public function headings(): array
     {
         return [

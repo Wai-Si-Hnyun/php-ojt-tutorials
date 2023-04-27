@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Services;
 
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-
 interface StudentServiceInterface
 {
     /**
@@ -48,9 +46,9 @@ interface StudentServiceInterface
     /**
      * Ecport CSV file for students
      *
-     * @return BinaryFileResponse
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function exportCsv(): BinaryFileResponse;
+    public function exportCsv();
 
     /**
      * Import data from CSV file to database
