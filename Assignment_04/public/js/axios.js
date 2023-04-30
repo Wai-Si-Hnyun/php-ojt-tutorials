@@ -47,7 +47,7 @@ const uploadMajorData = (name, route) => {
 const deleteData = (e, id, model) => {
     e.preventDefault();
 
-    const route = model === 'student' ? `/students/delete/${id}` : `/majors/delete/${id}`;
+    const route = model === 'student' ? `/students/${id}/delete` : `/majors/${id}/delete`;
 
     if (confirmDelete()) {
         axios.delete(route)

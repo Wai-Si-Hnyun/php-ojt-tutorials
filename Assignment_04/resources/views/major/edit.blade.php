@@ -32,7 +32,7 @@
 
             const id = document.getElementById('major_id').value;
             const name = document.getElementById('name').value;
-            const route = `/majors/update/${id}`;
+            const route = `/majors/${id}/update`;
 
             uploadMajorData(name, route);
         })

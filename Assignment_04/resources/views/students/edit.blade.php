@@ -71,7 +71,7 @@
                 'phone': phone,
                 'email': email,
                 'address': address,
-                'route': '/students/update/' + id
+                'route': '/students/' + id + '/update'
             };
 
             uploadStudentData(data);
