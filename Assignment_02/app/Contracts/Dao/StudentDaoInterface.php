@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Contracts\Dao;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 interface StudentDaoInterface
 {
@@ -48,7 +47,7 @@ interface StudentDaoInterface
      *
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function exportCsv(): BinaryFileResponse;
+    public function exportCsv();
 
     /**
      * Import csv data to database

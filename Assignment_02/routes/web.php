@@ -21,9 +21,9 @@ Route::redirect('/', '/students');
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
 Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
 Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
-Route::get('/students/edit/{id}', [StudentController::class, 'edit'])->name('students.edit');
-Route::put('/students/update/{id}', [StudentController::class, 'update'])->name('students.update');
-Route::delete('/students/delete/{id}', [StudentController::class, 'destroy'])->name('students.destroy');
+Route::get('/students/{id}/edit', [StudentController::class, 'edit'])->name('students.edit');
+Route::put('/students/{id}/update', [StudentController::class, 'update'])->name('students.update');
+Route::delete('/students/{id}/delete', [StudentController::class, 'destroy'])->name('students.destroy');
 
 //Routes for students csv handling
 Route::get('/students/csv/export', [StudentController::class, 'exportCsv'])->name('students.export');
@@ -33,6 +33,6 @@ Route::post('/students/csv/import', [StudentController::class, 'importCsv'])->na
 Route::get('/majors', [MajorController::class, 'index'])->name('majors.index');
 Route::get('/majors/create', [MajorController::class, 'create'])->name('majors.create');
 Route::post('/majors/store', [MajorController::class, 'store'])->name('majors.store');
-Route::get('/majors/edit/{id}', [MajorController::class, 'edit'])->name('majors.edit');
-Route::put('/majors/update/{id}', [MajorController::class, 'update'])->name('majors.update');
-Route::delete('/majors/delete/{id}', [MajorController::class, 'destroy'])->name('majors.destroy');
+Route::get('/majors/{id}/edit', [MajorController::class, 'edit'])->name('majors.edit');
+Route::put('/majors/{id}/update', [MajorController::class, 'update'])->name('majors.update');
+Route::delete('/majors/{id}/delete', [MajorController::class, 'destroy'])->name('majors.destroy');
