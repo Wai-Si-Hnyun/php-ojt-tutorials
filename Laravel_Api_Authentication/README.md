@@ -73,6 +73,7 @@ Follow these steps to set up the Laravel project:
     <li>Import CSV to Database</li>
     <li>Export students data from Database to CSV file</li>
     <li>Search Functionality</li>
+    <li>API Authentication Process</li>
 </ul>
 
 Now, you should be able to access the Laravel project at http://127.0.0.1:8000.
