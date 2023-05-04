@@ -35,17 +35,4 @@ class AuthDao implements AuthDaoInterface
     {
         return User::where('email', $email)->first();
     }
-
-    /**
-     * Save token in user table
-     *
-     * @param string $token
-     * @param User $user
-     * @return void
-     */
-    public function saveToken(string $token, User $user): void
-    {
-        $user->remember_token = $token;
-        $user->save();
-    }
 }

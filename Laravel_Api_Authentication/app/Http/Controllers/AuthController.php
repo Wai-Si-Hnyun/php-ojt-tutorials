@@ -30,7 +30,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (!Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'Email or Password is incorrect.'], 401);
         }
 
         $user = $this->authService->findUserByEmail($request->email);

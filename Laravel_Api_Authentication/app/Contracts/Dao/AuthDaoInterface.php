@@ -21,13 +21,4 @@ interface AuthDaoInterface
      * @return User|null
      */
     public function findUserByEmail(string $email): ?User;
-
-    /**
-     * Save token in user table
-     *
-     * @param string $token
-     * @param User $user
-     * @return void
-     */
-    public function saveToken(string $token, User $user): void;
 }

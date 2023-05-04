@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash;
 
 class LoginRequest extends FormRequest
 {
@@ -16,23 +14,6 @@ class LoginRequest extends FormRequest
     public function authorize()
     {
         return true;
-    }
-
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator) {
-            $user = User::where('email', $this->email)->first();
-
-            if (!$user) {
-                if (!$validator->errors()->has('email')) {
-                    $validator->errors()->add('email', 'Email is incorrect');
-                }
-            } else {
-                if (!Hash::check($this->password, $user->password)) {
-                    $validator->errors()->add('password', 'Password is incorrect');
-                }
-            }
-        });
     }
 
     /**

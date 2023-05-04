@@ -21,13 +21,4 @@ interface AuthServiceInterface
      * @return User|null
      */
     public function findUserByEmail(string $email): ?User;
-
-    /**
-     * Save toekn in user table
-     *
-     * @param string $token
-     * @param \App\Models\User $user
-     * @return void
-     */
-    public function saveToken(string $token, User $user): void;
 }
