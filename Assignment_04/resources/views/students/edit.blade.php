@@ -13,7 +13,7 @@
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" 
                             value="{{ $student->name }}" placeholder="Name"
-                            class="form-control">
+                            class="form-control" data-original-value="{{ $student->name }}">
                     </div>
                     <div class="mb-3">
                         <label for="major_id" class="form-label">Major</label>
@@ -29,17 +29,19 @@
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
                         <input type="text" name="phone" id="phone" value="{{ $student->phone }}"
-                            placeholder="09********" class="form-control">
+                            placeholder="09********" class="form-control"
+                            data-original-value="{{ $student->phone }}">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" name="email" id="email" value="{{ $student->email }}"
                             placeholder="name@example.com" 
-                            class="form-control">
+                            class="form-control" data-original-value="{{ $student->email }}">
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <textarea name="address" id="address" rows="5" cols="8"
+                            data-original-value="{{ $student->address }}" 
                             class="form-control">{{ $student->address }}</textarea>
                     </div>
                     <div class="d-flex justify-content-between mb-3">

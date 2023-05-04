@@ -12,7 +12,7 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" id="name" value="{{ $major->name }}"
-                            class="form-control">
+                            class="form-control" data-original-value="{{ $major->name }}">
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <a href="{{ route('majors.index') }}" class="btn btn-secondary">Back</a>

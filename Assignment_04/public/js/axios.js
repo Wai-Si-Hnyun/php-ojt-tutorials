@@ -16,6 +16,9 @@ const uploadStudentData = (data) => {
         if (err.response.status === 422) {
             const errors = err.response.data.errors;
 
+            //Display old data in input field
+            repopulateFields(errors);
+
             //Display validation errors in UI
             displayValidationErrors(errors);
         } else {
@@ -35,6 +38,9 @@ const uploadMajorData = (name, route) => {
     .catch(function(err) {
         if (err.response.status === 422) {
             const errors = err.response.data.errors;
+
+            //Display old data in input field
+            repopulateFields(errors);
 
             //Display validation errors in UI
             displayValidationErrors(errors);
@@ -92,6 +98,15 @@ const displayValidationErrors = (errors) => {
             console.warn('Input element not found');
         }
     }
+}
+
+const repopulateFields = (errors) => {
+    Object.keys(errors).forEach(field => {
+        const inputElement = document.getElementById(field);
+        if (inputElement) {
+            inputElement.value = inputElement.getAttribute('data-original-value');
+        }
+    })
 }
 
 const confirmDelete = () => {
